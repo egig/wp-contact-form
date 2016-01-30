@@ -1,0 +1,17 @@
+{
+    "name": "egig/egig-contact-form",
+    "require": {
+        "swiftmailer/swiftmailer": "^5.4",
+        "symfony/http-foundation": "^3.0",
+        "google/recaptcha": "~1.1"
+    },
+    "autoload": {
+        "psr-4": {"":"src"}
+    },
+    "authors": [
+        {
+            "name": "egig",
+            "email": "egigundari@gmail.com"
+        }
+    ]
+}
