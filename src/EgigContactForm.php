@@ -76,7 +76,7 @@ class EgigContactForm {
 			$smtpPass = $this->getOption('smtp_pass');
 			$smtpHost = $this->getOption('smtp_host');
 			$smtpPort = $this->getOption('smtp_port', 465);
-			$smtpSsl = $this->getOption('smtp_ssl', 1);
+			$smtpSsl = $this->getOption('smtp_ssl', 0);
 
 			$mailFrom = $smtpUser;
 			$mailFromName =  $this->getOption('mail_from_name');
@@ -88,6 +88,7 @@ class EgigContactForm {
 				->setFrom($mailFrom, $mailFromName)
 				->setTo($mailTos)
 				->setBody($messageBody);
+	
 
 			if($smtpSsl) {
 				$transport = Swift_SmtpTransport::newInstance($smtpHost, $smtpPort, 'ssl');
@@ -103,14 +104,13 @@ class EgigContactForm {
 			// Send the message
 			$result = $mailer->send($message);
 
-			var_dump($result);
-
 			if($result) {
 				header("Location: ".get_site_url(NULL, 'contact').'?contact-message-sent=1' );
 				exit();
 			}
 
 		} catch (\Exception $e) {
+			
 			throw $e;
 		}
 	}
